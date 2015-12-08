@@ -12,12 +12,12 @@ FROM centos:centos7
 
 MAINTAINER Ben Parees <bparees@redhat.com>
 
-ENV JENKINS_VERSION=1.609 \
+ENV JENKINS_VERSION=1.639 \
     HOME=/var/lib/jenkins \
     JENKINS_HOME=/var/lib/jenkins
 
 LABEL k8s.io.description="Jenkins is a continuous integration server" \
-      k8s.io.display-name="Jenkins 1.609" \
+      k8s.io.display-name="Jenkins 1.639" \
       openshift.io.expose-services="8080:http" \
       openshift.io.tags="jenkins,jenkins1,ci" \
       io.openshift.s2i.scripts-url=image:///usr/libexec/s2i
@@ -30,7 +30,7 @@ RUN curl http://pkg.jenkins-ci.org/redhat/jenkins.repo -o /etc/yum.repos.d/jenki
     rpmkeys --import file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7 && \
     yum -y --setopt=tsflags=nodocs --enablerepo=centosplus install epel-release && \
     rpmkeys --import file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7 && \
-    yum -y --setopt=tsflags=nodocs install gettext git tar zip unzip java-1.8.0-openjdk jenkins-1.609 nss_wrapper && \
+    yum -y --setopt=tsflags=nodocs install gettext git tar zip unzip java-1.8.0-openjdk jenkins-1.639 nss_wrapper && \
     yum clean all  && \
     localedef -f UTF-8 -i en_US en_US.UTF-8 && \
     curl -L https://github.com/openshift/origin/releases/download/v1.0.8/openshift-origin-v1.0.8-6a2b026-linux-amd64.tar.gz | tar -zx && \
