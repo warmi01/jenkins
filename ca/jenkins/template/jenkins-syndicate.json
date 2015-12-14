@@ -16,6 +16,12 @@
             "required": true
         },
         {
+            "name": "JENKINS_ADMIN_PASSWORD",
+            "description": "Password for the Jenkins 'admin' user.",
+            "value": "admin",
+            "required": true
+        },
+        {
             "name": "IMAGE_STREAM_NAME",
             "description": "Image stream name to create the app from.",
             "value": "jenkins-syndicate",
@@ -118,6 +124,12 @@
                                         "protocol": "TCP"
                                     }
                                 ],
+                                "env": [
+                                    {
+                                        "name": "JENKINS_PASSWORD",
+                                        "value": "${JENKINS_ADMIN_PASSWORD}"
+                                    }
+                                ],                                
                                 "resources": {},
                                 "volumeMounts": [
                                     {
