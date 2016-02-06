@@ -16,12 +16,6 @@
             "required": true
         },
         {
-            "name": "JENKINS_ADMIN_PASSWORD",
-            "description": "Password for the Jenkins 'admin' user.",
-            "value": "admin",
-            "required": true
-        },
-        {
             "name": "IMAGE_STREAM_NAME",
             "description": "Image stream name to create the app from.",
             "value": "jenkins-syndicate",
@@ -34,15 +28,21 @@
             "required": true
         },
         {
+            "name": "CI_DOCKER_HOST",
+            "description": "Remote Docker host for CI use",
+            "value": "ose3master1.services.slogvpc4.caplatformdev.com:32375",
+            "required": true
+        },
+        {
             "name": "NFS_SERVER",
             "description": "NFS server name used to mount volume.",
-            "value": "10.0.2.13",
+            "value": "dssnfs1",
             "required": true
         },
         {
             "name": "NFS_SERVER_PATH",
             "description": "Path exported by NFS.",
-            "value": "/export/dss_nfs/jenkins-syndicate/jenkins-syndicate/yZPZsDApPS",
+            "value": "/export/dss_nfs/jenkins-syndicate/jenkins-syndicate/omPvvgtBDM",
             "required": true
         }
     ],
@@ -108,7 +108,7 @@
                                     "server": "${NFS_SERVER}",
                                     "path": "${NFS_SERVER_PATH}"
                                 }
-                            }
+                            }                             
                         ],
                         "containers": [
                             {
@@ -126,16 +126,16 @@
                                 ],
                                 "env": [
                                     {
-                                        "name": "JENKINS_PASSWORD",
-                                        "value": "${JENKINS_ADMIN_PASSWORD}"
+                                        "name": "CI_DOCKER_HOST",
+                                        "value": "${CI_DOCKER_HOST}"
                                     }
                                 ],                                
                                 "resources": {},
                                 "volumeMounts": [
                                     {
                                         "name": "${APPLICATION_NAME}-volume-1",
-                                        "mountPath": "/var/lib/jenkins"
-                                    }
+                                        "mountPath": "/var/jenkins_home"
+                                    }                                    
                                 ],
                                 "terminationMessagePath": "/dev/termination-log",
                                 "imagePullPolicy": "Always"
